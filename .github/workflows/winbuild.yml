@@ -12,14 +12,25 @@ jobs:
 
     steps:
       - name: Checkout branch
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: issue-60263
 
       - name: Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+
+      - name: Cache build intermediates
+        uses: actions/cache@v4
+        with:
+          path: |
+            out
+            tools\msvs\build
+            .gyp
+          key: node-build-${{ runner.os }}-${{ hashFiles('**/*.cc', '**/*.h', 'vcbuild.bat') }}
+          restore-keys: |
+            node-build-${{ runner.os }}-
 
       - name: Install Visual Studio Build Tools
         uses: microsoft/setup-msbuild@v1
