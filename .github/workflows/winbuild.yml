@@ -28,7 +28,7 @@ jobs:
 
       - name: Build Node.js exe
         shell: cmd
-        run: vcbuild.bat x64 release
+        run: vcbuild.bat x64 release nosign nobuildsnapshot noetw
 
       - name: Upload node.exe
         uses: actions/upload-artifact@v4
