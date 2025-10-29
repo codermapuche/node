@@ -39,7 +39,7 @@ jobs:
 
       - name: Build Node.js exe
         shell: cmd
-        run: vcbuild.bat x64 release nosign nobuildsnapshot noetw
+        run: vcbuild.bat x64 release nosign noetw snapshotless
 
       - name: Upload node.exe
         uses: actions/upload-artifact@v4
